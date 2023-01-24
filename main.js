@@ -6,6 +6,7 @@ const counter = document.querySelector(".counter");
 
 let timeLeft = 10;
 let currentLight = "red";
+let counterTimeout;
 redLight.style.backgroundColor = "red";
 yellowLight.style.backgroundColor = "black";
 greenLight.style.backgroundColor = "black";
@@ -30,10 +31,11 @@ let changeLight = setInterval(() => {
 walkBtn.addEventListener("click", () => {
   clearInterval(changeLight);
   
-  let currentLight = "red";
+  currentLight = "red";
   redLight.style.backgroundColor = "red";
   yellowLight.style.backgroundColor = "black";
   greenLight.style.backgroundColor = "black";
+  timeLeft = 10;
   counter.textContent = `Times left: ${timeLeft}`;
 
   const updateCounter = () => {
@@ -56,8 +58,10 @@ walkBtn.addEventListener("click", () => {
         }
       }, 5000);
     } else {
+      clearTimeout(counterTimeout);
       counterTimeout = setTimeout(updateCounter, 1000);
     }
   };
+  clearTimeout(counterTimeout);
   counterTimeout = setTimeout(updateCounter, 1000);
 });
