@@ -36,12 +36,14 @@ walkBtn.addEventListener("click", () => {
   yellowLight.style.backgroundColor = "black";
   greenLight.style.backgroundColor = "black";
   timeLeft = 10;
+  walkBtn.disabled = true;
   counter.textContent = `Times left: ${timeLeft}`;
 
   const updateCounter = () => {
     timeLeft--;
     counter.textContent = `Times left: ${timeLeft}`;
     if (timeLeft === 0) {
+      walkBtn.disabled = false;
       changeLight = setInterval(() => {
         if (currentLight === "red") {
           redLight.style.backgroundColor = "black";
